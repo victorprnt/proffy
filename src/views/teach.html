@@ -36,7 +36,7 @@
         </header>
 
         <main>
-            <form action="" id="create-class">
+            <form action="/save-classes" id="create-class" method="POST">
                 <fieldset>
                     <legend>Personal Info</legend>
                     <div class="input-block">
@@ -112,12 +112,12 @@
 
                         <div class="input-block">
                             <label for="time-from">From</label>
-                            <input type="time"name="time-from[]" value="{{filters.time-to}}" >
+                            <input type="time"name="time_from[]" value="{{filters.time-to}}" >
                         </div>
 
                         <div class="input-block">
                             <label for="time-to">To</label>
-                            <input type="time"name="time-to[]" value="{{filters.time-from}}">
+                            <input type="time"name="time_to[]" value="{{filters.time-from}}">
                         </div>
                     </div>
                     

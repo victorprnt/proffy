@@ -1,5 +1,5 @@
 // Function must be async in order to use await
-module.exports = async function (db, { proffyValue, classValue, scheduleValues }) {
+module.exports = async function (db, { proffyValue, classValue, classScheduleValues }) {
     // Insert data on teacher table
     // Await waits the end of line execution
     const insertedProffy = await db.run(`
@@ -31,8 +31,9 @@ module.exports = async function (db, { proffyValue, classValue, scheduleValues }
     `)
     const classID = insertedClass.lastID // ID used for netx table schedule
 
+
     // Insert data on class_schedule table
-    const insertedAllScheduleValues = scheduleValues.map(scheduleValue => {
+    const insertedAllScheduleValues = classScheduleValues.map(classScheduleValues => {
         return db.run(`
             INSERT INTO class_schedule (
                 class_id,
@@ -41,9 +42,9 @@ module.exports = async function (db, { proffyValue, classValue, scheduleValues }
                 time_to
             ) VALUES (
                 "${classID}",
-                "${scheduleValue.weekday}",
-                "${scheduleValue.time_from}",
-                "${scheduleValue.time_to}"
+                "${classScheduleValues.weekday}",
+                "${classScheduleValues.time_from}",
+                "${classScheduleValues.time_to}"
             );
         `)
     })
